@@ -5,7 +5,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { show_alerta } from '../funciones';
 
 const ShowProducts = () => {
-    const url = 'http://api-producst.run';
+    const url = 'http://localhost/api-products/';
     const [products, setProducts] = useState([]);
     const [id, setId] = useState('');
     const [name, setName] = useState('');
@@ -52,7 +52,25 @@ const ShowProducts = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="table-group-divider">
+                                    {products.map((product, i) => (
+                                        <tr key={product.id}>
+                                            <td>{(i+1)}</td>
+                                            <td>{product.name}</td>
+                                            <td>{product.description}</td>
+                                            <td>${new Intl.NumberFormat('es-mx').format(product.price)}</td>
+                                            <td>
+                                                <button className="btn btn-warning">
+                                                    <i className="fa-solid fa-edit"></i> 
+                                                </button>
+                                                &nbsp;
+                                                <button className="btn btn-danger">
+                                                    <i className="fa-solid fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))
 
+                                    }
                                 </tbody>
                             </table>
                         </div>
